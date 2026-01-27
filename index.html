@@ -15,11 +15,17 @@
             <h1>Find Matching Colors</h1>
             <p class="subtitle">Pick a base color to see beautiful combinations</p>
             
-            <div class="input-wrapper">
-                <div class="color-preview" id="color-preview">
-                    <input type="color" id="color-picker" value="#3a86ff">
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <div class="color-preview" id="color-preview">
+                        <input type="color" id="color-picker" value="#3a86ff">
+                    </div>
+                    <input type="text" id="hex-input" value="#3A86FF" maxlength="7">
                 </div>
-                <input type="text" id="hex-input" value="#3a86ff" maxlength="7">
+                <button id="copy-base-btn" class="copy-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    COPY
+                </button>
             </div>
         </div>
     </header>
