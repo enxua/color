@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Palette Generator</title>
+    <title>Color Matcher</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="palette-container" id="palette">
-        <!-- Color columns will be generated here -->
-    </div>
+    <header class="header">
+        <div class="container">
+            <h1>Find Matching Colors</h1>
+            <p class="subtitle">Pick a base color to see beautiful combinations</p>
+            
+            <div class="input-wrapper">
+                <div class="color-preview" id="color-preview">
+                    <input type="color" id="color-picker" value="#3a86ff">
+                </div>
+                <input type="text" id="hex-input" value="#3a86ff" maxlength="7">
+            </div>
+        </div>
+    </header>
 
-    <div class="controls">
-        <button id="generate-btn" class="main-btn">Generate New Palette (Space)</button>
-        <p class="hint">Press Space to generate, Click color to copy, Click Icon to lock</p>
-    </div>
+    <main class="container">
+        <div id="grid" class="color-grid">
+            <!-- Cards will be injected here -->
+        </div>
+    </main>
 
     <div id="toast" class="toast">Copied to clipboard!</div>
 
