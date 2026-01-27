@@ -30,8 +30,12 @@ function updateUI(baseHex) {
     const harmonies = generateHarmonies(baseHex);
     
     harmonies.forEach(color => {
-        const card = createCard(baseHex, color);
-        grid.appendChild(card);
+        // We only want unique harmonious colors, so we filter if needed, 
+        // but generateHarmonies logic is fine for now.
+        if (color.toUpperCase() !== baseHex.toUpperCase()) {
+             const card = createCard(baseHex, color);
+             grid.appendChild(card);
+        }
     });
 }
 
@@ -39,30 +43,32 @@ function createCard(baseHex, matchHex) {
     const card = document.createElement('div');
     card.className = 'color-card';
     
-    card.innerHTML = `
-        <div class="card-preview">
-            <div class="color-half" style="background-color: ${baseHex}" title="Click to copy ${baseHex}" data-color="${baseHex}"></div>
-            <div class="color-half" style="background-color: ${matchHex}" title="Click to copy ${matchHex}" data-color="${matchHex}"></div>
-        </div>
-        <div class="card-info">
-            <span class="hex-code">${baseHex.toUpperCase()}</span>
-            <span class="copy-hint">Click color to copy</span>
-            <span class="hex-code">${matchHex.toUpperCase()}</span>
-        </div>
+    // Section 1: Base BG, Match Text
+    const topBox = document.createElement('div');
+    topBox.className = 'preview-box';
+    topBox.style.backgroundColor = baseHex;
+    topBox.style.color = matchHex;
+    topBox.innerHTML = `
+        <span class="preview-text-large">Aa</span>
+        <span class="preview-text-small">Good Contrast</span>
+        <div class="hex-tag" style="background: ${matchHex}; color: ${baseHex}">BG: ${baseHex}</div>
     `;
+    topBox.onclick = () => copyToClipboard(baseHex);
 
-    // Click event delegation
-    card.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target.classList.contains('color-half')) {
-            const color = target.getAttribute('data-color');
-            copyToClipboard(color);
-        } else {
-            // If clicked elsewhere on card, copy the match color by default or just flash visual
-            // Let's copy the match color for convenience if card body is clicked
-            copyToClipboard(matchHex);
-        }
-    });
+    // Section 2: Match BG, Base Text
+    const bottomBox = document.createElement('div');
+    bottomBox.className = 'preview-box';
+    bottomBox.style.backgroundColor = matchHex;
+    bottomBox.style.color = baseHex;
+    bottomBox.innerHTML = `
+        <span class="preview-text-large">Aa</span>
+        <span class="preview-text-small">Reverse Colors</span>
+        <div class="hex-tag" style="background: ${baseHex}; color: ${matchHex}">BG: ${matchHex}</div>
+    `;
+    bottomBox.onclick = () => copyToClipboard(matchHex);
+
+    card.appendChild(topBox);
+    card.appendChild(bottomBox);
 
     return card;
 }
@@ -71,41 +77,41 @@ function generateHarmonies(hex) {
     const hsl = hexToHSL(hex);
     const results = [];
 
-    // 1. Complementary (Standard)
+    // 1. Complementary
     results.push(HSLToHex((hsl.h + 180) % 360, hsl.s, hsl.l));
 
-    // 2. Split Complementary 1
-    results.push(HSLToHex((hsl.h + 150) % 360, hsl.s, hsl.l));
-    
-    // 3. Split Complementary 2
-    results.push(HSLToHex((hsl.h + 210) % 360, hsl.s, hsl.l));
+    // 2. High Contrast (White/Black)
+    results.push(hsl.l > 50 ? '#000000' : '#FFFFFF');
 
-    // 4. Analogous 1
+    // 3. Analogous (Right)
     results.push(HSLToHex((hsl.h + 30) % 360, hsl.s, hsl.l));
 
-    // 5. Analogous 2
+    // 4. Analogous (Left)
     results.push(HSLToHex((hsl.h - 30 + 360) % 360, hsl.s, hsl.l));
 
-    // 6. Triadic 1
+    // 5. Triadic 1
     results.push(HSLToHex((hsl.h + 120) % 360, hsl.s, hsl.l));
 
-    // 7. Triadic 2
+    // 6. Triadic 2
     results.push(HSLToHex((hsl.h + 240) % 360, hsl.s, hsl.l));
 
-    // 8. Monochromatic Light
-    results.push(HSLToHex(hsl.h, hsl.s, Math.min(hsl.l + 30, 95)));
+    // 7. Split Comp 1
+    results.push(HSLToHex((hsl.h + 150) % 360, hsl.s, hsl.l));
 
-    // 9. Monochromatic Dark
-    results.push(HSLToHex(hsl.h, hsl.s, Math.max(hsl.l - 30, 10)));
+    // 8. Split Comp 2
+    results.push(HSLToHex((hsl.h + 210) % 360, hsl.s, hsl.l));
+
+    // 9. Monochromatic Light (Tint)
+    results.push(HSLToHex(hsl.h, hsl.s, Math.min(hsl.l + 40, 95)));
+
+    // 10. Monochromatic Dark (Shade)
+    results.push(HSLToHex(hsl.h, hsl.s, Math.max(hsl.l - 40, 10)));
     
-    // 10. Square 1
+    // 11. Tetradic 
     results.push(HSLToHex((hsl.h + 90) % 360, hsl.s, hsl.l));
 
-     // 11. High Contrast
-    results.push(hsl.l > 50 ? '#000000' : '#FFFFFF');
-    
-    // 12. Saturation Shift
-    results.push(HSLToHex(hsl.h, Math.max(hsl.s - 30, 0), hsl.l));
+    // 12. Desaturated
+    results.push(HSLToHex(hsl.h, Math.max(hsl.s - 40, 5), hsl.l));
 
     return results;
 }

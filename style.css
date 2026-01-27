@@ -1,5 +1,7 @@
+/* ... (Previous CSS remains, updating card styles) ... */
+
 :root {
-    --bg-color: #ffffff;
+    --bg-color: #f9fafb;
     --text-color: #111827;
     --border-color: #e5e7eb;
     --font-main: 'Inter', sans-serif;
@@ -27,25 +29,26 @@ body {
 /* Header */
 .header {
     background: white;
-    padding: 4rem 0 3rem;
+    padding: 3rem 0 2.5rem;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 20px -10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px -10px rgba(0,0,0,0.03);
 }
 
 .header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.03em;
 }
 
 .subtitle {
     color: #6b7280;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
 }
 
 /* Input Area */
@@ -54,9 +57,9 @@ body {
     align-items: center;
     background: white;
     border: 2px solid var(--border-color);
-    border-radius: 16px;
-    padding: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
     transition: all 0.2s;
 }
 
@@ -66,9 +69,9 @@ body {
 }
 
 .color-preview {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(0,0,0,0.1);
@@ -89,77 +92,88 @@ input[type="color"] {
 
 input[type="text"] {
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
     font-family: monospace;
     color: var(--text-color);
-    width: 140px;
-    padding: 0 16px;
+    width: 120px;
+    padding: 0 12px;
     outline: none;
     text-transform: uppercase;
+    background: transparent;
 }
 
 /* Grid */
 .color-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
     padding: 3rem 0;
 }
 
+/* New Card Design */
 .color-card {
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: white;
-    cursor: pointer;
-    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
 }
 
 .color-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.card-preview {
-    height: 200px;
-    display: flex;
-}
-
-.color-half {
+.preview-box {
     flex: 1;
-    position: relative;
-    transition: opacity 0.2s;
-}
-
-.color-half:hover {
-    opacity: 0.9;
-}
-
-.card-info {
-    padding: 1rem;
+    padding: 1.5rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background: white;
-}
-
-.hex-code {
-    font-family: monospace;
-    font-weight: 600;
-    color: #4b5563;
-    font-size: 0.9rem;
-}
-
-.copy-hint {
-    font-size: 0.75rem;
-    color: #9ca3af;
-    opacity: 0;
+    text-align: center;
+    min-height: 140px;
+    position: relative;
+    cursor: pointer;
     transition: opacity 0.2s;
 }
 
-.color-card:hover .copy-hint {
+.preview-box:hover {
+    filter: brightness(0.97);
+}
+
+.preview-text-large {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.05em;
+}
+
+.preview-text-small {
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.hex-tag {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    padding: 2px 6px;
+    border-radius: 4px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.preview-box:hover .hex-tag {
     opacity: 1;
 }
 
@@ -169,7 +183,7 @@ input[type="text"] {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: #1f2937;
+    background: #111827;
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
@@ -177,8 +191,8 @@ input[type="text"] {
     visibility: hidden;
     transition: all 0.3s;
     z-index: 200;
-    font-weight: 600;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    font-weight: 500;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .toast.show {
@@ -188,6 +202,6 @@ input[type="text"] {
 }
 
 @media (max-width: 640px) {
-    .header h1 { font-size: 1.8rem; }
-    .grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.5rem; }
+    .color-grid { grid-template-columns: 1fr; }
 }
