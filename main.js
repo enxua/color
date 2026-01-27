@@ -4,8 +4,14 @@ const hexInput = document.getElementById('hex-input');
 const copyBaseBtn = document.getElementById('copy-base-btn');
 const grid = document.getElementById('grid');
 const toast = document.getElementById('toast');
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+// Icons
+const moonIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+const sunIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
 
 // Initialize
+initTheme();
 updateUI(colorPicker.value);
 
 // Event Listeners
@@ -29,6 +35,36 @@ hexInput.addEventListener('input', (e) => {
 copyBaseBtn.addEventListener('click', () => {
     copyToClipboard(colorPicker.value.toUpperCase());
 });
+
+themeToggleBtn.addEventListener('click', () => {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+});
+
+// Theme Logic
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    let theme = 'light';
+    if (savedTheme) {
+        theme = savedTheme;
+    } else if (prefersDark) {
+        theme = 'dark';
+    }
+    
+    document.documentElement.setAttribute('data-theme', theme);
+    updateThemeIcon(theme);
+}
+
+function updateThemeIcon(theme) {
+    themeToggleBtn.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
+}
 
 // Core Logic
 function updateUI(baseHex) {
@@ -79,24 +115,22 @@ function createCard(baseHex, matchHex) {
 
 function generateHarmonies(hex) {
     const hsl = hexToHSL(hex);
-    const results = new Set(); // Use Set to avoid duplicates
+    const results = new Set(); 
 
-    // Helper to add hex to set
     const add = (h, s, l) => results.add(HSLToHex(h, s, l).toUpperCase());
 
-    // Harmonies
-    add((hsl.h + 180) % 360, hsl.s, hsl.l); // Complementary
-    results.add(hsl.l > 50 ? '#000000' : '#FFFFFF'); // Contrast
-    add((hsl.h + 30) % 360, hsl.s, hsl.l); // Analogous
+    add((hsl.h + 180) % 360, hsl.s, hsl.l); 
+    results.add(hsl.l > 50 ? '#000000' : '#FFFFFF'); 
+    add((hsl.h + 30) % 360, hsl.s, hsl.l); 
     add((hsl.h - 30 + 360) % 360, hsl.s, hsl.l);
-    add((hsl.h + 120) % 360, hsl.s, hsl.l); // Triadic
+    add((hsl.h + 120) % 360, hsl.s, hsl.l); 
     add((hsl.h + 240) % 360, hsl.s, hsl.l);
-    add((hsl.h + 150) % 360, hsl.s, hsl.l); // Split Comp
+    add((hsl.h + 150) % 360, hsl.s, hsl.l); 
     add((hsl.h + 210) % 360, hsl.s, hsl.l);
-    add(hsl.h, hsl.s, Math.min(hsl.l + 40, 95)); // Tint
-    add(hsl.h, hsl.s, Math.max(hsl.l - 40, 10)); // Shade
-    add((hsl.h + 90) % 360, hsl.s, hsl.l); // Square
-    add(hsl.h, Math.max(hsl.s - 40, 5), hsl.l); // Desaturated
+    add(hsl.h, hsl.s, Math.min(hsl.l + 40, 95)); 
+    add(hsl.h, hsl.s, Math.max(hsl.l - 40, 10)); 
+    add((hsl.h + 90) % 360, hsl.s, hsl.l); 
+    add(hsl.h, Math.max(hsl.s - 40, 5), hsl.l); 
 
     return Array.from(results);
 }
