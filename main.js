@@ -1,3 +1,99 @@
+// Translations
+const translations = {
+    "en": {
+        title: "Find Matching Colors",
+        subtitle: "Pick a base color to see beautiful combinations",
+        goodContrast: "Good Contrast",
+        reverseColors: "Reverse Colors",
+        clickToCopyText: "Click to copy text color",
+        clickToCopyBg: "Click to copy background color",
+        copied: "Copied"
+    },
+    "de": {
+        title: "Passende Farben finden",
+        subtitle: "Wählen Sie eine Grundfarbe für schöne Kombinationen",
+        goodContrast: "Guter Kontrast",
+        reverseColors: "Farben umkehren",
+        clickToCopyText: "Klicken zum Kopieren der Textfarbe",
+        clickToCopyBg: "Klicken zum Kopieren der Hintergrundfarbe",
+        copied: "Kopiert"
+    },
+    "es": {
+        title: "Encontrar colores combinados",
+        subtitle: "Elige un color base para ver combinaciones hermosas",
+        goodContrast: "Buen contraste",
+        reverseColors: "Invertir colores",
+        clickToCopyText: "Clic para copiar color de texto",
+        clickToCopyBg: "Clic para copiar color de fondo",
+        copied: "Copiado"
+    },
+    "fr": {
+        title: "Trouver des couleurs assorties",
+        subtitle: "Choisissez une couleur de base pour voir de belles combinaisons",
+        goodContrast: "Bon contraste",
+        reverseColors: "Couleurs inversées",
+        clickToCopyText: "Cliquez pour copier la couleur du texte",
+        clickToCopyBg: "Cliquez pour copier la couleur de l'arrière-plan",
+        copied: "Copié"
+    },
+    "it": {
+        title: "Trova colori abbinati",
+        subtitle: "Scegli un colore di base per vedere belle combinazioni",
+        goodContrast: "Buon contrasto",
+        reverseColors: "Colori invertiti",
+        clickToCopyText: "Clicca per copiare il colore del testo",
+        clickToCopyBg: "Clicca per copiare il colore dello sfondo",
+        copied: "Copiato"
+    },
+    "pt": {
+        title: "Encontrar cores correspondentes",
+        subtitle: "Escolha uma cor base para ver belas combinações",
+        goodContrast: "Bom contraste",
+        reverseColors: "Cores invertidas",
+        clickToCopyText: "Clique para copiar a cor do texto",
+        clickToCopyBg: "Clique para copiar a cor do fundo",
+        copied: "Copiado"
+    },
+    "ko": {
+        title: "어울리는 색상 찾기",
+        subtitle: "기준 색상을 선택하여 아름다운 조합을 확인하세요",
+        goodContrast: "좋은 대비",
+        reverseColors: "색상 반전",
+        clickToCopyText: "텍스트 색상을 복사하려면 클릭",
+        clickToCopyBg: "배경 색상을 복사하려면 클릭",
+        copied: "복사됨"
+    },
+    "ja": {
+        title: "配色を見つける",
+        subtitle: "ベースカラーを選んで美しい組み合わせを確認",
+        goodContrast: "良好なコントラスト",
+        reverseColors: "色の反転",
+        clickToCopyText: "クリックして文字色をコピー",
+        clickToCopyBg: "クリックして背景色をコピー",
+        copied: "コピーしました"
+    },
+    "zh-CN": {
+        title: "查找匹配颜色",
+        subtitle: "选择基色以查看漂亮的组合",
+        goodContrast: "良好的对比度",
+        reverseColors: "反转颜色",
+        clickToCopyText: "点击复制文本颜色",
+        clickToCopyBg: "点击复制背景颜色",
+        copied: "已复制"
+    },
+    "zh-TW": {
+        title: "尋找匹配顏色",
+        subtitle: "選擇基色以查看漂亮的組合",
+        goodContrast: "良好的對比度",
+        reverseColors: "反轉顏色",
+        clickToCopyText: "點擊複製文字顏色",
+        clickToCopyBg: "點擊複製背景顏色",
+        copied: "已複製"
+    }
+};
+
+let currentLang = "en";
+
 // DOM Elements
 const colorPicker = document.getElementById('color-picker');
 const hexInput = document.getElementById('hex-input');
@@ -5,6 +101,7 @@ const copyBaseBtn = document.getElementById('copy-base-btn');
 const grid = document.getElementById('grid');
 const toast = document.getElementById('toast');
 const themeToggleBtn = document.getElementById('theme-toggle');
+const langSelect = document.getElementById('lang-select');
 
 // Icons
 const moonIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
@@ -46,6 +143,25 @@ themeToggleBtn.addEventListener('click', () => {
     updateThemeIcon(newTheme);
 });
 
+langSelect.addEventListener('change', (e) => {
+    currentLang = e.target.value;
+    updateLanguage();
+    updateUI(colorPicker.value); // Re-render cards with new language
+});
+
+// Translation Logic
+function updateLanguage() {
+    const texts = translations[currentLang];
+    
+    // Update static elements with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (texts[key]) {
+            el.textContent = texts[key];
+        }
+    });
+}
+
 // Theme Logic
 function initTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -82,6 +198,7 @@ function updateUI(baseHex) {
 function createCard(baseHex, matchHex) {
     const card = document.createElement('div');
     card.className = 'color-card';
+    const texts = translations[currentLang];
     
     // Section 1: Base BG, Match Text -> Click copies Match Text
     const topBox = document.createElement('div');
@@ -90,9 +207,10 @@ function createCard(baseHex, matchHex) {
     topBox.style.color = matchHex;
     topBox.innerHTML = `
         <span class="preview-text-large">Aa</span>
-        <span class="preview-text-small">Click to copy text color</span>
+        <span class="preview-text-small">${texts.goodContrast}</span>
         <div class="hex-tag" style="background: ${matchHex}; color: ${baseHex}">${matchHex.toUpperCase()}</div>
     `;
+    topBox.title = texts.clickToCopyText;
     topBox.onclick = () => copyToClipboard(matchHex.toUpperCase());
 
     // Section 2: Match BG, Base Text -> Click copies Match BG
@@ -102,9 +220,10 @@ function createCard(baseHex, matchHex) {
     bottomBox.style.color = baseHex;
     bottomBox.innerHTML = `
         <span class="preview-text-large">Aa</span>
-        <span class="preview-text-small">Click to copy background color</span>
+        <span class="preview-text-small">${texts.reverseColors}</span>
         <div class="hex-tag" style="background: ${baseHex}; color: ${matchHex}">${matchHex.toUpperCase()}</div>
     `;
+    bottomBox.title = texts.clickToCopyBg;
     bottomBox.onclick = () => copyToClipboard(matchHex.toUpperCase());
 
     card.appendChild(topBox);
@@ -217,10 +336,11 @@ function HSLToHex(h, s, l) {
 
 async function copyToClipboard(text) {
     if (!text) return;
+    const texts = translations[currentLang];
     
     try {
         await navigator.clipboard.writeText(text);
-        showToast(`Copied ${text}`);
+        showToast(`${texts.copied} ${text}`);
     } catch (err) {
         console.warn('Clipboard API failed, trying fallback...', err);
         fallbackCopyTextToClipboard(text);
@@ -228,6 +348,7 @@ async function copyToClipboard(text) {
 }
 
 function fallbackCopyTextToClipboard(text) {
+    const texts = translations[currentLang];
     const textArea = document.createElement("textarea");
     textArea.value = text;
     
@@ -244,7 +365,7 @@ function fallbackCopyTextToClipboard(text) {
     try {
         const successful = document.execCommand('copy');
         if (successful) {
-            showToast(`Copied ${text}`);
+            showToast(`${texts.copied} ${text}`);
         } else {
             console.error('Fallback copy failed.');
             showToast('Press Ctrl+C to copy');

@@ -13,12 +13,24 @@
     <header class="header">
         <div class="container">
             <div class="header-top">
+                <select id="lang-select" class="lang-select" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="it">Italiano</option>
+                    <option value="pt">Português</option>
+                    <option value="ko">한국어</option>
+                    <option value="ja">日本語</option>
+                    <option value="zh-CN">简体中文</option>
+                    <option value="zh-TW">繁體中文</option>
+                </select>
                 <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
                     <!-- Icon injected by JS -->
                 </button>
             </div>
-            <h1>Find Matching Colors</h1>
-            <p class="subtitle">Pick a base color to see beautiful combinations</p>
+            <h1 data-i18n="title">Find Matching Colors</h1>
+            <p class="subtitle" data-i18n="subtitle">Pick a base color to see beautiful combinations</p>
             
             <div class="input-group">
                 <div class="input-wrapper">
@@ -27,9 +39,8 @@
                     </div>
                     <input type="text" id="hex-input" value="#3A86FF" maxlength="7">
                 </div>
-                <button id="copy-base-btn" class="copy-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    COPY
+                <button id="copy-base-btn" class="copy-btn" aria-label="Copy Color">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 </button>
             </div>
         </div>

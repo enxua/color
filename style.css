@@ -58,8 +58,10 @@ body {
 .header-top {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
     padding: 0 1rem;
-    margin-bottom: -2rem; /* Pull button up */
+    margin-bottom: -1rem; /* Adjust positioning */
     position: relative;
     z-index: 101;
 }
@@ -78,7 +80,7 @@ body {
     font-size: 0.95rem;
 }
 
-/* Theme Toggle Button */
+/* Controls (Theme & Lang) */
 .theme-btn {
     background: transparent;
     border: 1px solid var(--border-color);
@@ -91,11 +93,33 @@ body {
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .theme-btn:hover {
     background: var(--bg-color);
     transform: rotate(15deg);
+}
+
+.lang-select {
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: 0.875rem;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+}
+
+.lang-select:hover {
+    border-color: var(--text-secondary);
 }
 
 /* Input Group */
@@ -159,14 +183,14 @@ input[type="text"] {
 .copy-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
     background: var(--text-color);
     color: var(--surface-color);
     border: none;
-    padding: 0.75rem 1.25rem;
+    width: 56px; /* Square-ish */
+    height: 56px;
     border-radius: 12px;
     font-weight: 700;
-    font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -236,7 +260,6 @@ input[type="text"] {
     font-weight: 600;
     opacity: 0.9;
     letter-spacing: 0.05em;
-    text-transform: uppercase;
 }
 
 .hex-tag {
@@ -276,8 +299,8 @@ input[type="text"] {
 
 @media (max-width: 640px) {
     .header h1 { font-size: 1.5rem; }
-    .input-group { flex-direction: column; width: 100%; }
-    .input-wrapper { width: 100%; justify-content: center; }
-    .copy-btn { width: 100%; justify-content: center; }
-    .header-top { justify-content: center; margin-bottom: 0; }
+    .input-group { width: 100%; }
+    .input-wrapper { flex: 1; }
+    .header-top { justify-content: center; margin-bottom: 0.5rem; }
+    .lang-select { width: 100%; max-width: 200px; }
 }
