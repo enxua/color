@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Matcher</title>
+    <meta name="description" content="Find the perfect color combinations for your design projects. Generate complementary, analogous, triadic, and monochromatic color palettes instantly with our free Color Matcher tool.">
     <meta name="google-adsense-account" content="ca-pub-6144766552255496">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6144766552255496"
      crossorigin="anonymous"></script>
@@ -53,7 +54,66 @@
         <div id="grid" class="color-grid">
             <!-- Cards will be injected here -->
         </div>
+
+        <section class="content-section" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+            <article>
+                <h2 style="margin-bottom: 1.5rem;">Understanding Color Harmonies</h2>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary); line-height: 1.6;">
+                    Color harmony is the theory of combining colors in a fashion that is harmonious to the eye. In other words, what shapes come together to produce a pleasing effect? Here are the primary color harmonies used in this tool:
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Complementary</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                            Colors that are opposite each other on the color wheel are considered to be complementary colors (example: red and green). The high contrast of complementary colors creates a vibrant look especially when used at full saturation.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Analogous</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                            Analogous color schemes use colors that are next to each other on the color wheel. They usually match well and create serene and comfortable designs. Analogous color schemes are often found in nature and are harmonious and pleasing to the eye.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Triadic</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                            A triadic color scheme uses colors that are evenly spaced around the color wheel. Triadic color harmonies tend to be quite vibrant, even if you use pale or unsaturated versions of your hues.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;">Monochromatic</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                            Monochromatic color schemes are derived from a single base hue and extended using its shades, tones, and tints. Tints are achieved by adding white and shades and tones are achieved by adding a darker color, gray or black.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <article style="margin-top: 3rem;">
+                <h2 style="margin-bottom: 1rem;">How to Use Color Matcher</h2>
+                <p style="color: var(--text-secondary); line-height: 1.6;">
+                    Using our tool is simple and intuitive. Just follow these steps to find your perfect palette:
+                </p>
+                <ol style="margin-left: 1.5rem; margin-top: 1rem; color: var(--text-secondary); line-height: 1.6;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Select a Base Color:</strong> Click on the color input box to open the color picker, or type a Hex code directly if you have a specific color in mind.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Explore Combinations:</strong> The tool automatically generates various harmonies based on your selection.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Copy to Clipboard:</strong> Click on any color card to copy its Hex code instantly. You can then paste it into your design software (Photoshop, Figma, CSS, etc.).</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Switch Themes:</strong> Use the sun/moon icon in the top right corner to check how your colors look in both light and dark modes.</li>
+                </ol>
+            </article>
+        </section>
     </main>
+
+    <footer style="margin-top: 4rem; padding: 2rem 0; border-top: 1px solid var(--border-color); text-align: center;">
+        <div class="container">
+            <p style="margin-bottom: 1rem;">&copy; 2026 Color Matcher. All rights reserved.</p>
+            <nav>
+                <a href="privacy.html" style="color: var(--text-secondary); margin: 0 1rem; text-decoration: none;">Privacy Policy</a>
+                <a href="terms.html" style="color: var(--text-secondary); margin: 0 1rem; text-decoration: none;">Terms of Service</a>
+            </nav>
+        </div>
+    </footer>
 
     <div id="toast" class="toast">Copied to clipboard!</div>
 
