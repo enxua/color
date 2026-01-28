@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Sitemap: https://findcolor.pages.dev/sitemap.xml
+
+#DaumWebMasterTool:105103340f18dba967014261de0870c579ccd7c8b26694fd50109e7d30607c2a:5llCktz7ZGRLpLSfLaoo1w==
