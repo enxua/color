@@ -2,6 +2,8 @@
 const translations = {
     "en": {
         title: "Find Matching Colors",
+        navHome: "Home",
+        navBrowse: "Browse",
         subtitle: "Pick a base color to see beautiful combinations",
         goodContrast: "Good Contrast",
         reverseColors: "Reverse Colors",
@@ -242,6 +244,8 @@ const translations = {
     },
     "ko": {
         title: "어울리는 색상 찾기",
+        navHome: "홈",
+        navBrowse: "둘러보기",
         subtitle: "기준 색상을 선택하여 아름다운 조합을 확인하세요",
         goodContrast: "좋은 대비",
         reverseColors: "색상 반전",
@@ -694,4 +698,76 @@ function showToast(message) {
     setTimeout(() => {
         toast.classList.remove('show');
     }, 2000);
+}
+
+// Navigation & Browse Logic
+const navHome = document.getElementById('nav-home');
+const navBrowse = document.getElementById('nav-browse');
+const viewHome = document.getElementById('view-home-content');
+const viewBrowse = document.getElementById('view-browse');
+const browseGrid = document.getElementById('browse-grid');
+let browseLoaded = false;
+
+navHome.addEventListener('click', () => switchView('home'));
+navBrowse.addEventListener('click', () => switchView('browse'));
+
+function switchView(viewName) {
+    if (viewName === 'home') {
+        viewHome.classList.remove('hidden');
+        viewBrowse.classList.add('hidden');
+        navHome.classList.add('active');
+        navBrowse.classList.remove('active');
+    } else {
+        viewHome.classList.add('hidden');
+        viewBrowse.classList.remove('hidden');
+        navHome.classList.remove('active');
+        navBrowse.classList.add('active');
+        if (!browseLoaded) loadBrowseColors();
+    }
+}
+
+async function loadBrowseColors() {
+    try {
+        const response = await fetch('colors.json');
+        const colors = await response.json();
+        renderBrowseGrid(colors);
+        browseLoaded = true;
+    } catch (error) {
+        console.error('Failed to load colors:', error);
+    }
+}
+
+function renderBrowseGrid(colors) {
+    browseGrid.innerHTML = '';
+    colors.forEach(pair => {
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        card.style.cursor = 'pointer';
+        
+        // Simple preview of the pair
+        const preview = document.createElement('div');
+        preview.className = 'preview-box';
+        preview.style.backgroundColor = pair.bg;
+        preview.style.color = pair.text;
+        preview.style.minHeight = '200px';
+        preview.innerHTML = `
+            <span class="preview-text-large">Aa</span>
+            <div class="hex-tag" style="background: rgba(0,0,0,0.5); color: #fff; left: 12px; right: auto;">${pair.bg}</div>
+            <div class="hex-tag" style="background: rgba(255,255,255,0.8); color: #000;">${pair.text}</div>
+        `;
+        
+        card.onclick = () => {
+            // Apply color to picker and update UI
+            colorPicker.value = pair.bg; 
+            hexInput.value = pair.bg;
+            updateUI(pair.bg);
+            
+            // Switch back to home
+            switchView('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        
+        card.appendChild(preview);
+        browseGrid.appendChild(card);
+    });
 }
