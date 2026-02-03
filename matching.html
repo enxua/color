@@ -12,7 +12,7 @@
       gtag('config', 'G-J1C3428MR5');
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Matcher - Browse Palettes</title>
+    <title>Color Matcher - Find Harmonies</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -29,8 +29,8 @@
                     
                     <!-- Navigation -->
                     <nav class="main-nav" style="margin: 0;">
-                        <a href="index.html" class="nav-link active" data-i18n="navBrowse">Browse</a>
-                        <a href="matching.html" class="nav-link" data-i18n="navHome">Home</a>
+                        <a href="index.html" class="nav-link" data-i18n="navBrowse">Browse</a>
+                        <a href="matching.html" class="nav-link active" data-i18n="navHome">Home</a>
                     </nav>
                 </div>
 
@@ -38,7 +38,7 @@
                     <select id="lang-select" class="lang-select" aria-label="Select Language">
                         <option value="en">English</option>
                         <option value="ko">한국어</option>
-                        <!-- Other options truncated for brevity, can be added if needed -->
+                        <!-- Other options truncated -->
                     </select>
                     <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
                         <!-- Icon injected by JS -->
@@ -47,18 +47,41 @@
             </div>
             
             <div class="header-content" style="margin-top: 3rem; text-align: center;">
-                <h1 data-i18n="browseTitle" style="font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -0.05em;">Browse Color Palettes</h1>
-                <p class="subtitle" data-i18n="browseSubtitle" style="font-size: 1.1rem; opacity: 0.8;">Discover beautiful color combinations</p>
+                <h1 data-i18n="title" style="font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -0.05em;">Find Matching Colors</h1>
+                <p class="subtitle" data-i18n="subtitle" style="font-size: 1.1rem; opacity: 0.8;">Pick a base color to see beautiful combinations</p>
+            </div>
+            
+            <div id="view-home" class="view-section" style="margin-top: 2rem;">
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <div class="color-preview" id="color-preview">
+                            <input type="color" id="color-picker" value="#3a86ff">
+                        </div>
+                        <input type="text" id="hex-input" value="#3A86FF" maxlength="7">
+                    </div>
+                    <button id="copy-base-btn" class="copy-btn" aria-label="Copy Color">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <div id="view-browse" class="view-section" style="margin-top: 2rem;">
-            <div id="browse-grid" class="color-grid">
-                <!-- Browse cards will be injected here -->
-            </div>
+        <div id="grid" class="color-grid">
+            <!-- Cards will be injected here -->
         </div>
+        
+        <!-- Explanation section preserved -->
+        <section class="content-section" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+            <article>
+                <h2 style="margin-bottom: 1.5rem;" data-i18n="understandingHarmoniesTitle">Understanding Color Harmonies</h2>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary); line-height: 1.6;" data-i18n="understandingHarmoniesDesc">
+                    Color harmony is the theory of combining colors in a fashion that is harmonious to the eye.
+                </p>
+                <!-- Simplified for brevity, main.js will fill details or static content can be kept if needed -->
+            </article>
+        </section>
     </main>
 
     <footer style="margin-top: 4rem; padding: 2rem 0; border-top: 1px solid var(--border-color); text-align: center;">
