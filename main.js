@@ -4,6 +4,8 @@ const translations = {
         title: "Find Matching Colors",
         navHome: "Home",
         navBrowse: "Browse",
+        browseTitle: "Browse Color Palettes",
+        browseSubtitle: "Discover beautiful color combinations",
         subtitle: "Pick a base color to see beautiful combinations",
         goodContrast: "Good Contrast",
         reverseColors: "Reverse Colors",
@@ -246,6 +248,8 @@ const translations = {
         title: "어울리는 색상 찾기",
         navHome: "홈",
         navBrowse: "둘러보기",
+        browseTitle: "색상 팔레트 둘러보기",
+        browseSubtitle: "아름다운 색상 조합을 발견하세요",
         subtitle: "기준 색상을 선택하여 아름다운 조합을 확인하세요",
         goodContrast: "좋은 대비",
         reverseColors: "색상 반전",
@@ -705,21 +709,30 @@ const navHome = document.getElementById('nav-home');
 const navBrowse = document.getElementById('nav-browse');
 const viewHome = document.getElementById('view-home-content');
 const viewBrowse = document.getElementById('view-browse');
+const headerHome = document.getElementById('header-content-home');
+const headerBrowse = document.getElementById('header-content-browse');
 const browseGrid = document.getElementById('browse-grid');
 let browseLoaded = false;
 
 navHome.addEventListener('click', () => switchView('home'));
 navBrowse.addEventListener('click', () => switchView('browse'));
 
+// Initialize: Load browse colors immediately
+loadBrowseColors();
+
 function switchView(viewName) {
     if (viewName === 'home') {
         viewHome.classList.remove('hidden');
         viewBrowse.classList.add('hidden');
+        headerHome.classList.remove('hidden');
+        headerBrowse.classList.add('hidden');
         navHome.classList.add('active');
         navBrowse.classList.remove('active');
     } else {
         viewHome.classList.add('hidden');
         viewBrowse.classList.remove('hidden');
+        headerHome.classList.add('hidden');
+        headerBrowse.classList.remove('hidden');
         navHome.classList.remove('active');
         navBrowse.classList.add('active');
         if (!browseLoaded) loadBrowseColors();

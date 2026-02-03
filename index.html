@@ -408,32 +408,42 @@
 <body>
     <header class="header">
         <div class="container">
-            <div class="header-top">
-                <select id="lang-select" class="lang-select" aria-label="Select Language">
-                    <option value="en">English</option>
-                    <option value="de">Deutsch</option>
-                    <option value="es">Español</option>
-                    <option value="fr">Français</option>
-                    <option value="it">Italiano</option>
-                    <option value="pt">Português</option>
-                    <option value="ko">한국어</option>
-                    <option value="ja">日本語</option>
-                    <option value="zh-CN">简体中文</option>
-                    <option value="zh-TW">繁體中文</option>
-                </select>
-                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
-                    <!-- Icon injected by JS -->
-                </button>
-            </div>
-            <h1 data-i18n="title">Find Matching Colors</h1>
-            <p class="subtitle" data-i18n="subtitle">Pick a base color to see beautiful combinations</p>
+            <div class="header-top" style="justify-content: space-between;">
+                <nav class="main-nav" style="margin: 0;">
+                    <button id="nav-browse" class="nav-tab active" data-i18n="navBrowse">Browse</button>
+                    <button id="nav-home" class="nav-tab" data-i18n="navHome">Home</button>
+                </nav>
 
-            <nav class="main-nav">
-                <button id="nav-home" class="nav-tab active" data-i18n="navHome">Home</button>
-                <button id="nav-browse" class="nav-tab" data-i18n="navBrowse">Browse</button>
-            </nav>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <select id="lang-select" class="lang-select" aria-label="Select Language">
+                        <option value="en">English</option>
+                        <option value="de">Deutsch</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="it">Italiano</option>
+                        <option value="pt">Português</option>
+                        <option value="ko">한국어</option>
+                        <option value="ja">日本語</option>
+                        <option value="zh-CN">简体中文</option>
+                        <option value="zh-TW">繁體中文</option>
+                    </select>
+                    <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+                        <!-- Icon injected by JS -->
+                    </button>
+                </div>
+            </div>
+            <div id="header-content-home" class="header-content hidden" style="margin-top: 2rem;">
+                <h1 data-i18n="title">Find Matching Colors</h1>
+                <p class="subtitle" data-i18n="subtitle">Pick a base color to see beautiful combinations</p>
+            </div>
             
-            <div id="view-home" class="view-section">
+            <div id="header-content-browse" class="header-content" style="margin-top: 2rem;">
+                <h1 data-i18n="browseTitle">Browse Color Palettes</h1>
+                <p class="subtitle" data-i18n="browseSubtitle">Discover beautiful color combinations</p>
+            </div>
+            
+            <div id="view-home" class="view-section hidden" style="margin-top: 2rem;">
+
                 <div class="input-group">
                     <div class="input-wrapper">
                         <div class="color-preview" id="color-preview">
@@ -450,15 +460,17 @@
     </header>
 
     <main class="container">
-        <div id="view-home-content" class="view-section">
-            <div id="grid" class="color-grid">
-                <!-- Cards will be injected here -->
+        <!-- Browse View (Default) -->
+        <div id="view-browse" class="view-section">
+            <div id="browse-grid" class="color-grid">
+                <!-- Browse cards will be injected here -->
             </div>
         </div>
 
-        <div id="view-browse" class="view-section hidden">
-            <div id="browse-grid" class="color-grid">
-                <!-- Browse cards will be injected here -->
+        <!-- Home View (Hidden initially) -->
+        <div id="view-home-content" class="view-section hidden">
+            <div id="grid" class="color-grid">
+                <!-- Cards will be injected here -->
             </div>
         </div>
 
