@@ -568,12 +568,42 @@ function renderBrowseGrid(colors) {
         preview.style.backgroundColor = pair.bg;
         preview.style.color = pair.text;
         preview.style.minHeight = '200px';
-        preview.innerHTML = `
-            <span class="preview-text-large">Aa</span>
-            <div class="hex-tag" style="background: rgba(0,0,0,0.5); color: #fff; left: 12px; right: auto;">${pair.bg}</div>
-            <div class="hex-tag" style="background: rgba(255,255,255,0.8); color: #000;">${pair.text}</div>
-        `;
         
+        // Large 'Aa' Text
+        const textSpan = document.createElement('span');
+        textSpan.className = 'preview-text-large';
+        textSpan.textContent = 'Aa';
+        preview.appendChild(textSpan);
+
+        // Background Hex Tag
+        const bgTag = document.createElement('div');
+        bgTag.className = 'hex-tag';
+        bgTag.style.background = 'rgba(0,0,0,0.5)';
+        bgTag.style.color = '#fff';
+        bgTag.style.left = '12px';
+        bgTag.style.right = 'auto';
+        bgTag.textContent = pair.bg;
+        bgTag.title = "Copy Background Color";
+        bgTag.onclick = (e) => {
+            e.stopPropagation(); // Prevent card click (navigation)
+            copyToClipboard(pair.bg);
+        };
+        preview.appendChild(bgTag);
+
+        // Text Hex Tag
+        const textTag = document.createElement('div');
+        textTag.className = 'hex-tag';
+        textTag.style.background = 'rgba(255,255,255,0.8)';
+        textTag.style.color = '#000';
+        textTag.textContent = pair.text;
+        textTag.title = "Copy Text Color";
+        textTag.onclick = (e) => {
+            e.stopPropagation(); // Prevent card click (navigation)
+            copyToClipboard(pair.text);
+        };
+        preview.appendChild(textTag);
+        
+        // Card Click (Navigation)
         card.onclick = () => {
             const cleanHex = pair.bg.replace('#', '');
             window.location.href = `matching.html?color=${cleanHex}`;
@@ -583,6 +613,7 @@ function renderBrowseGrid(colors) {
         browseGrid.appendChild(card);
     });
 }
+
 
 // --- Matching Page Logic ---
 function updateUI(baseHex) {
