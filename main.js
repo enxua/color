@@ -7,7 +7,43 @@ const translations = {
         browseTitle: "Browse Color Palettes",
         browseSubtitle: "Discover beautiful color combinations",
         subtitle: "Pick a base color to see beautiful combinations",
-...
+        goodContrast: "Good Contrast",
+        reverseColors: "Reverse Colors",
+        clickToCopyText: "Click to copy text color",
+        clickToCopyBg: "Click to copy background color",
+        copied: "Copied",
+        understandingHarmoniesTitle: "Understanding Color Harmonies",
+        understandingHarmoniesDesc: "Color harmony is the theory of combining colors in a fashion that is harmonious to the eye. In other words, what shapes come together to produce a pleasing effect? Here are the primary color harmonies used in this tool:",
+        complementaryTitle: "Complementary",
+        complementaryDesc: "Colors that are opposite each other on the color wheel are considered to be complementary colors (example: red and green). The high contrast of complementary colors creates a vibrant look especially when used at full saturation.",
+        analogousTitle: "Analogous",
+        analogousDesc: "Analogous color schemes use colors that are next to each other on the color wheel. They usually match well and create serene and comfortable designs. Analogous color schemes are often found in nature and are harmonious and pleasing to the eye.",
+        triadicTitle: "Triadic",
+        triadicDesc: "A triadic color scheme uses colors that are evenly spaced around the color wheel. Triadic color harmonies tend to be quite vibrant, even if you use pale or unsaturated versions of your hues.",
+        monochromaticTitle: "Monochromatic",
+        monochromaticDesc: "Monochromatic color schemes are derived from a single base hue and extended using its shades, tones, and tints. Tints are achieved by adding white and shades and tones are achieved by adding a darker color, gray or black.",
+        howToUseTitle: "How to Use Color Matcher",
+        howToUseDesc: "Using our tool is simple and intuitive. Just follow these steps to find your perfect palette:",
+        step1Title: "Select a Base Color:",
+        step1Desc: "Click on the color input box to open the color picker, or type a Hex code directly if you have a specific color in mind.",
+        step2Title: "Explore Combinations:",
+        step2Desc: "The tool automatically generates various harmonies based on your selection.",
+        step3Title: "Copy to Clipboard:",
+        step3Desc: "Click on any color card to copy its Hex code instantly. You can then paste it into your design software (Photoshop, Figma, CSS, etc.).",
+        step4Title: "Switch Themes:",
+        step4Desc: "Use the sun/moon icon in the top right corner to check how your colors look in both light and dark modes.",
+        faqTitle: "Frequently Asked Questions (FAQ)",
+        faq1Q: "What is a color palette generator?",
+        faq1A: "A color palette generator is a tool that helps designers and artists find colors that work well together. Color Matcher allows you to input a base color and automatically generates complementary, analogous, triadic, and monochromatic color schemes.",
+        faq2Q: "How do I find complementary colors?",
+        faq2A: "Complementary colors are opposite each other on the color wheel. You can find them easily using Color Matcher by selecting your base color; the tool will instantly display the complementary color alongside other harmonious combinations.",
+        faq3Q: "Is Color Matcher free to use?",
+        faq3A: "Yes, Color Matcher is a completely free online tool for generating color palettes for your web design, graphic design, and art projects.",
+        faq4Q: "Can I use these color palettes for commercial projects?",
+        faq4A: "Absolutely! The color codes generated (Hex, RGB, etc.) are universal and can be used in any personal or commercial project without restriction.",
+        privacyPolicy: "Privacy Policy",
+        termsOfService: "Terms of Service"
+    },
     "ko": {
         title: "어울리는 색상 찾기",
         navHome: "색상 만들기",
@@ -55,6 +91,40 @@ const translations = {
     // Add other languages here if needed...
 };
 
+// Embedded Color Data
+const PRESET_COLORS = [
+    { "bg": "#1A1A1D", "text": "#C3073F" },
+    { "bg": "#FFFFFF", "text": "#845EC2" },
+    { "bg": "#FFC75F", "text": "#845EC2" },
+    { "bg": "#F9F871", "text": "#0081CF" },
+    { "bg": "#00C9A7", "text": "#4D8076" },
+    { "bg": "#D65DB1", "text": "#FF6F91" },
+    { "bg": "#FF9671", "text": "#845EC2" },
+    { "bg": "#2C3E50", "text": "#E74C3C" },
+    { "bg": "#ECF0F1", "text": "#2C3E50" },
+    { "bg": "#3498DB", "text": "#F1C40F" },
+    { "bg": "#8E44AD", "text": "#F39C12" },
+    { "bg": "#2ECC71", "text": "#BE2EDD" },
+    { "bg": "#16A085", "text": "#F39C12" },
+    { "bg": "#27AE60", "text": "#C0392B" },
+    { "bg": "#2980B9", "text": "#8E44AD" },
+    { "bg": "#F1C40F", "text": "#16A085" },
+    { "bg": "#E67E22", "text": "#2980B9" },
+    { "bg": "#E74C3C", "text": "#2C3E50" },
+    { "bg": "#ECF0F1", "text": "#BDC3C7" },
+    { "bg": "#95A5A6", "text": "#2C3E50" },
+    { "bg": "#34495E", "text": "#E67E22" },
+    { "bg": "#1ABC9C", "text": "#9B59B6" },
+    { "bg": "#000000", "text": "#F1C40F" },
+    { "bg": "#191919", "text": "#ED4C67" },
+    { "bg": "#12CBC4", "text": "#0652DD" },
+    { "bg": "#FDA7DF", "text": "#9980FA" },
+    { "bg": "#D980FA", "text": "#5758BB" },
+    { "bg": "#B53471", "text": "#833471" },
+    { "bg": "#6F1E51", "text": "#FEA47F" },
+    { "bg": "#25CCF7", "text": "#EAB543" }
+];
+
 let currentLang = "en";
 
 // Icons
@@ -77,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 1. Browse Page
     if (browseGrid) {
-        loadBrowseColors();
+        renderBrowseGrid(PRESET_COLORS);
     }
     
     // 2. Matching Page
@@ -167,42 +237,35 @@ function updateLanguage() {
 }
 
 // --- Browse Page Logic ---
-async function loadBrowseColors() {
+function renderBrowseGrid(colors) {
     const browseGrid = document.getElementById('browse-grid');
     if (!browseGrid) return;
     
-    try {
-        const response = await fetch('colors.json');
-        const colors = await response.json();
+    browseGrid.innerHTML = '';
+    colors.forEach(pair => {
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        card.style.cursor = 'pointer';
         
-        browseGrid.innerHTML = '';
-        colors.forEach(pair => {
-            const card = document.createElement('div');
-            card.className = 'color-card';
-            card.style.cursor = 'pointer';
-            
-            const preview = document.createElement('div');
-            preview.className = 'preview-box';
-            preview.style.backgroundColor = pair.bg;
-            preview.style.color = pair.text;
-            preview.style.minHeight = '200px';
-            preview.innerHTML = `
-                <span class="preview-text-large">Aa</span>
-                <div class="hex-tag" style="background: rgba(0,0,0,0.5); color: #fff; left: 12px; right: auto;">${pair.bg}</div>
-                <div class="hex-tag" style="background: rgba(255,255,255,0.8); color: #000;">${pair.text}</div>
-            `;
-            
-            card.onclick = () => {
-                const cleanHex = pair.bg.replace('#', '');
-                window.location.href = `matching.html?color=${cleanHex}`;
-            };
-            
-            card.appendChild(preview);
-            browseGrid.appendChild(card);
-        });
-    } catch (error) {
-        console.error('Failed to load colors:', error);
-    }
+        const preview = document.createElement('div');
+        preview.className = 'preview-box';
+        preview.style.backgroundColor = pair.bg;
+        preview.style.color = pair.text;
+        preview.style.minHeight = '200px';
+        preview.innerHTML = `
+            <span class="preview-text-large">Aa</span>
+            <div class="hex-tag" style="background: rgba(0,0,0,0.5); color: #fff; left: 12px; right: auto;">${pair.bg}</div>
+            <div class="hex-tag" style="background: rgba(255,255,255,0.8); color: #000;">${pair.text}</div>
+        `;
+        
+        card.onclick = () => {
+            const cleanHex = pair.bg.replace('#', '');
+            window.location.href = `matching.html?color=${cleanHex}`;
+        };
+        
+        card.appendChild(preview);
+        browseGrid.appendChild(card);
+    });
 }
 
 // --- Matching Page Logic ---
