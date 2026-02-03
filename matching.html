@@ -11,8 +11,65 @@
 
       gtag('config', 'G-J1C3428MR5');
     </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "v8egon4c35"); </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Matcher - Find Harmonies</title>
+    <title>Free Color Palette Generator & Matcher - Create Schemes</title>
+    <meta name="description" content="Generate perfect color harmonies instantly. Find complementary, analogous, and triadic colors for any base color. Free online color matching tool.">
+    <meta name="keywords" content="color palette generator, color matcher, complementary color finder, hex color tool, color schemes generator, 색상 조합 생성기, 보색 찾기, 컬러 매처">
+    <meta name="author" content="Color Matcher">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://findcolor.pages.dev/matching.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://findcolor.pages.dev/matching.html">
+    <meta property="og:title" content="Free Color Palette Generator & Matcher">
+    <meta property="og:description" content="Create beautiful color schemes instantly. Input a base color and get perfect harmonies.">
+    <meta property="og:image" content="https://findcolor.pages.dev/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://findcolor.pages.dev/matching.html">
+    <meta property="twitter:title" content="Free Color Palette Generator & Matcher">
+    <meta property="twitter:description" content="Create beautiful color schemes instantly. Input a base color and get perfect harmonies.">
+    <meta property="twitter:image" content="https://findcolor.pages.dev/og-image.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Color Matcher Generator",
+        "url": "https://findcolor.pages.dev/matching.html",
+        "description": "An interactive tool to generate complementary, analogous, and triadic color schemes.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "What are complementary colors?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Complementary colors are pairs of colors which, when combined or mixed, cancel each other out. They are opposite each other on the color wheel."
+          }
+        }]
+      }
+    ]
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -79,14 +136,48 @@
             <!-- Cards will be injected here -->
         </div>
         
-        <!-- Explanation section preserved -->
         <section class="content-section" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
             <article>
                 <h2 style="margin-bottom: 1.5rem;" data-i18n="understandingHarmoniesTitle">Understanding Color Harmonies</h2>
                 <p style="margin-bottom: 1rem; color: var(--text-secondary); line-height: 1.6;" data-i18n="understandingHarmoniesDesc">
-                    Color harmony is the theory of combining colors in a fashion that is harmonious to the eye.
+                    Color harmony is the theory of combining colors in a fashion that is harmonious to the eye. In other words, what shapes come together to produce a pleasing effect? Here are the primary color harmonies used in this tool:
                 </p>
-                <!-- Simplified for brevity, main.js will fill details or static content can be kept if needed -->
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;" data-i18n="complementaryTitle">Complementary</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;" data-i18n="complementaryDesc">
+                            Colors that are opposite each other on the color wheel are considered to be complementary colors (example: red and green). The high contrast of complementary colors creates a vibrant look especially when used at full saturation.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;" data-i18n="analogousTitle">Analogous</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;" data-i18n="analogousDesc">
+                            Analogous color schemes use colors that are next to each other on the color wheel. They usually match well and create serene and comfortable designs. Analogous color schemes are often found in nature and are harmonious and pleasing to the eye.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;" data-i18n="triadicTitle">Triadic</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;" data-i18n="triadicDesc">
+                            A triadic color scheme uses colors that are evenly spaced around the color wheel. Triadic color harmonies tend to be quite vibrant, even if you use pale or unsaturated versions of your hues.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.5rem;" data-i18n="monochromaticTitle">Monochromatic</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;" data-i18n="monochromaticDesc">
+                            Monochromatic color schemes are derived from a single base hue and extended using its shades, tones, and tints. Tints are achieved by adding white and shades and tones are achieved by adding a darker color, gray or black.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Additional FAQ for Matching -->
+            <article style="margin-top: 3rem; padding-top: 2rem; border-top: 1px dashed var(--border-color);">
+                <h2 style="margin-bottom: 1.5rem;">Q&A</h2>
+                <dl style="color: var(--text-secondary); line-height: 1.6;">
+                    <dt style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);" data-i18n="faq4Q">What are complementary colors?</dt>
+                    <dd style="margin-bottom: 0; margin-left: 0;" data-i18n="faq4A">Complementary colors are pairs of colors which, when combined or mixed, cancel each other out (lose hue) by producing a grayscale color like white or black. When placed next to each other, they create the strongest contrast.</dd>
+                </dl>
             </article>
         </section>
     </main>
@@ -94,6 +185,10 @@
     <footer style="margin-top: 4rem; padding: 2rem 0; border-top: 1px solid var(--border-color); text-align: center;">
         <div class="container">
             <p style="margin-bottom: 1rem;">&copy; 2026 Color Matcher. All rights reserved.</p>
+            <nav>
+                <a href="privacy.html" style="color: var(--text-secondary); margin: 0 1rem; text-decoration: none;" data-i18n="privacyPolicy">Privacy Policy</a>
+                <a href="terms.html" style="color: var(--text-secondary); margin: 0 1rem; text-decoration: none;" data-i18n="termsOfService">Terms of Service</a>
+            </nav>
         </div>
     </footer>
 

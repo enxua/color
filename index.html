@@ -11,8 +11,79 @@
 
       gtag('config', 'G-J1C3428MR5');
     </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "v8egon4c35"); </script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Matcher - Browse Palettes</title>
+    <title>Browse Beautiful Color Palettes - Color Matcher</title>
+    <meta name="description" content="Explore thousands of curated color palettes and combinations. Find the perfect color scheme for your next design, website, or art project. Copy Hex codes instantly.">
+    <meta name="keywords" content="color palette browser, color inspiration, beautiful color schemes, hex codes, web design colors, ui palettes, 색상 추천, 컬러 팔레트, 디자인 영감">
+    <meta name="author" content="Color Matcher">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://findcolor.pages.dev/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://findcolor.pages.dev/">
+    <meta property="og:title" content="Browse Beautiful Color Palettes - Color Matcher">
+    <meta property="og:description" content="Explore thousands of curated color palettes and combinations. Find the perfect color scheme for your next design.">
+    <meta property="og:image" content="https://findcolor.pages.dev/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://findcolor.pages.dev/">
+    <meta property="twitter:title" content="Browse Beautiful Color Palettes - Color Matcher">
+    <meta property="twitter:description" content="Explore thousands of curated color palettes and combinations. Find the perfect color scheme for your next design.">
+    <meta property="twitter:image" content="https://findcolor.pages.dev/og-image.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Color Matcher",
+        "url": "https://findcolor.pages.dev/",
+        "description": "A free online tool to browse and generate color palettes.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "What is a Hex color code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Hex color code is a hexadecimal way to represent a color in RGB format by combining three red, green, and blue values. It starts with a hash (#) followed by six digits."
+          }
+        }, {
+          "@type": "Question",
+          "name": "How do I choose a color palette for my website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start with a primary color that represents your brand. Then, use this tool to find complementary or analogous colors to create a balanced look. The '60-30-10 rule' is a popular guideline."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Are these color palettes free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, all color combinations generated or displayed on Color Matcher are free to use for both personal and commercial projects."
+          }
+        }]
+      }
+    ]
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -66,11 +137,32 @@
                 <!-- Browse cards will be injected here -->
             </div>
         </div>
+
+        <!-- FAQ Section -->
+        <section class="content-section" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+            <article>
+                <h2 style="margin-bottom: 1.5rem;" data-i18n="faqTitle">Frequently Asked Questions</h2>
+                <dl style="color: var(--text-secondary); line-height: 1.6;">
+                    <dt style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);" data-i18n="faq1Q">What is a Hex color code?</dt>
+                    <dd style="margin-bottom: 1.5rem; margin-left: 0;" data-i18n="faq1A">A Hex color code is a hexadecimal way to represent a color in RGB format by combining three red, green, and blue values. It starts with a hash (#) followed by six digits (e.g., #FFFFFF for white).</dd>
+
+                    <dt style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);" data-i18n="faq2Q">How do I choose a color palette for my website?</dt>
+                    <dd style="margin-bottom: 1.5rem; margin-left: 0;" data-i18n="faq2A">Start with a primary color that represents your brand. Then, use this tool to find complementary or analogous colors to create a balanced look. The '60-30-10 rule' is a popular guideline: 60% dominant color, 30% secondary, and 10% accent.</dd>
+
+                    <dt style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);" data-i18n="faq3Q">Are these color palettes free to use?</dt>
+                    <dd style="margin-bottom: 0; margin-left: 0;" data-i18n="faq3A">Yes, all color combinations generated or displayed on Color Matcher are free to use for both personal and commercial projects.</dd>
+                </dl>
+            </article>
+        </section>
     </main>
 
     <footer style="margin-top: 4rem; padding: 2rem 0; border-top: 1px solid var(--border-color); text-align: center;">
         <div class="container">
             <p style="margin-bottom: 1rem;">&copy; 2026 Color Matcher. All rights reserved.</p>
+            <nav>
+                <a href="privacy.html" style="color: var(--text-secondary); margin: 0 1rem; text-decoration: none;" data-i18n="privacyPolicy">Privacy Policy</a>
+                <a href="terms.html" style="color: var(--text-secondary); margin: 0 1rem; text-decoration: none;" data-i18n="termsOfService">Terms of Service</a>
+            </nav>
         </div>
     </footer>
 
