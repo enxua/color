@@ -526,8 +526,17 @@ function initLanguage() {
     const langSelect = document.getElementById('lang-select');
     if (!langSelect) return;
 
+    // Load saved language
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang && translations[savedLang]) {
+        currentLang = savedLang;
+        langSelect.value = savedLang;
+        updateLanguage();
+    }
+
     langSelect.addEventListener('change', (e) => {
         currentLang = e.target.value;
+        localStorage.setItem('lang', currentLang); // Save to storage
         updateLanguage();
         // If on matching page, re-render cards to update tooltips/text
         const colorPicker = document.getElementById('color-picker');
