@@ -42,7 +42,8 @@ const translations = {
         faq4Q: "What are complementary colors?",
         faq4A: "Complementary colors are pairs of colors which, when combined or mixed, cancel each other out (lose hue) by producing a grayscale color like white or black. When placed next to each other, they create the strongest contrast.",
         privacyPolicy: "Privacy Policy",
-        termsOfService: "Terms of Service"
+        termsOfService: "Terms of Service",
+        about: "About"
     },
     "ko": {
         title: "어울리는 색상 찾기",
@@ -86,7 +87,8 @@ const translations = {
         faq4Q: "보색이란 무엇인가요?",
         faq4A: "보색은 색상환에서 서로 정반대 편에 위치한 색상 쌍을 말합니다. 이들을 함께 배치하면 가장 강한 대비 효과를 만들어냅니다.",
         privacyPolicy: "개인정보처리방침",
-        termsOfService: "서비스 이용약관"
+        termsOfService: "서비스 이용약관",
+        about: "정보"
     },
     // Keep other languages as they are, using English for new keys if translation not available immediately or just basic structure. 
     // For brevity in this response, I'm including only EN/KO fully updated as requested, 
